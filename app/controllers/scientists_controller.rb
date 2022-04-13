@@ -1,6 +1,6 @@
 class ScientistsController < ApplicationController
 
-before_action :find_scientist, except: :index
+before_action :find_scientist, except: [:index, :create]
 
     def index
         render json: Scientist.all
@@ -11,8 +11,8 @@ before_action :find_scientist, except: :index
     end
 
     def create
-        newScientist = Scientist.create!(scientist_params)
-        render json: newScientist, status: :created
+        scientist = Scientist.create!(scientist_params)
+        render json: scientist, status: :created
     end
 
     def update
